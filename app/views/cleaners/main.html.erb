@@ -1,0 +1,12 @@
+
+
+<%= form_tag process_file_cleaners_path, multipart: true do %>
+  <label for="file" class="upload-label">File to Upload</label>
+  <%= file_field_tag :file %>
+  <br>
+  <%= submit_tag( "Make my log awesome", :class => "btn btn-primary" ) %>
+<% end %>
+<br/>
+
+<%= @parsed_content.present? %>
+<br>
