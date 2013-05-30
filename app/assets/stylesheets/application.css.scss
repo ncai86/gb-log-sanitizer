@@ -15,6 +15,23 @@ $navbarBackground: #2A3688;
 $navbarBackgroundHighlight: #2A3688;
 $navbarBrandColor: #CEECFB;
 
+$iconSpritePath: "/assets/twitter/bootstrap/glyphicons-halflings";
+$iconWhiteSpritePath: "/assets/twitter/bootstrap/glyphicons-halflings-white";
+
+
 
 @import url(http://fonts.googleapis.com/css?family=Raleway:200,100,800);
 @import "bootstrap";
+html, body{height: 100%;}
+.container-fluid, .row-fluid{height: 90%}
+
+.brand {
+	font-family: 'Raleway', sans-serif;
+}
+
+.btn, .upload-label {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 800;
+}
+
+
