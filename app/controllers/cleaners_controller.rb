@@ -1,3 +1,5 @@
+require 'tempfile'
+
 class CleanersController < ApplicationController
 
 	CHECK_STRING = ['msg rcv', 'msg to send']
@@ -15,18 +17,21 @@ class CleanersController < ApplicationController
 		@content = params[:file].read
 		logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
-		File.open "#{Rails.root}/tmp/#{new_filename}.txt", 'wb', :output_encoding => "binary" do |file|
+		# File.open "#{Rails.root}/tmp/#{new_filename}.txt", 'wb', :output_encoding => "binary" do |file|
+		file = Tempfile.new(["#{new_filename}", ".txt"], "tmp")
+
+		begin
 			@content.each_line do |r|
 				if  (r.include?('<#>') && include_string?(r, CHECK_STRING)) || ((r.include? '<#>') == false)
 					# include_string?(r, CHECK_STRING )) || ((r.include? '<#>') == false)
 					file.puts r.strip
 				end
 			end
+			file.close
+			send_file file.path, :x_sendfile => true
 		end
-		download(new_filename)
 	end
-	# render "main"
-
+	
 	private
 
 	def download(filename)
