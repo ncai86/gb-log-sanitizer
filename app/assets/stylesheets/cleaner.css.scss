@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html, body {height: 100%;}
+
+#content, .container-fluid, .row-fluid
+{
+    overflow-y:auto;
+    height:90%;
+    min-height: 90%;
+}​
+
 
 .brand {
 	font-family: 'Raleway', sans-serif;
