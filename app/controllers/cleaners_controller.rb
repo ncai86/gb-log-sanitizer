@@ -19,7 +19,7 @@ class CleanersController < ApplicationController
 
 		# File.open "#{Rails.root}/tmp/#{new_filename}.txt", 'wb', :output_encoding => "binary" do |file|
 		file = Tempfile.new(["#{new_filename}", ".txt"], "tmp")
-
+		file.binmode
 		begin
 			@content.each_line do |r|
 				if  (r.include?('<#>') && include_string?(r, CHECK_STRING)) || ((r.include? '<#>') == false)
