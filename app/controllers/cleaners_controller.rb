@@ -24,7 +24,7 @@ class CleanersController < ApplicationController
 			@content.each_line do |r|
 				if  (r.include?('<#>') && include_string?(r, CHECK_STRING)) || ((r.include? '<#>') == false)
 					# include_string?(r, CHECK_STRING )) || ((r.include? '<#>') == false)
-					file.puts r.strip
+					file.puts r
 				end
 			end
 			file.close
