@@ -2,7 +2,7 @@ require 'tempfile'
 
 class CleanersController < ApplicationController
 
-	CHECK_STRING = ['msg rcv', 'msg to send']
+	CHECK_STRING = ['msg rcv', 'msg to send', 'EV.ERR']
 
 	def main
 	end
