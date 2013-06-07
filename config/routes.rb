@@ -4,6 +4,7 @@ LogCleaner::Application.routes.draw do
     collection do
       get 'main'
       post 'process_file'
+      get 'download'
     end
   end
 
