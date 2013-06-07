@@ -19,7 +19,7 @@ class CleanersController < ApplicationController
 		logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
 		# File.open "#{Rails.root}/tmp/#{new_filename}.txt", 'wb', :output_encoding => "binary" do |file|
-		file = File.open("tmp/txlogs/#{new_filename}", "w+")
+		file = File.open("txlogs/#{new_filename}", "w+")
 		file.binmode
 		begin
 			@content.each_line do |r|
