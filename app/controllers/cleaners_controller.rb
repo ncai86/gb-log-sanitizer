@@ -9,7 +9,8 @@ class CleanersController < ApplicationController
 	end
 
 	def process_file
-		new_filename = sanitize_filename(params[:file].original_filename)
+		logger.info params[:file].class
+		new_filename = sanitize_filename(params[:file])
 		@content = params[:file].read
 		logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 		# File.open "#{Rails.root}/tmp/#{new_filename}.txt", 'wb', :output_encoding => "binary" do |file|
@@ -42,7 +43,7 @@ class CleanersController < ApplicationController
 	private
 
 	def sanitize_filename(file)
-		browser.ie? ? stripped_file = File.basename(file) : stripped_file = file
+		stripped_file = file.original_filename
 
 		if stripped_file.include? '.txt'
 			stripped_file.sub(".txt", "_cleaned.txt")
