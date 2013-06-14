@@ -11,6 +11,8 @@ class CleanersController < ApplicationController
 	def process_file
 		logger.info params[:file].class
 		new_filename = sanitize_filename(params[:file])
+		logger.info "!!!!!!!!!!!!!!!!!!!!!"
+		logger.info new_filename
 		@content = params[:file].read
 		logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 		# File.open "#{Rails.root}/tmp/#{new_filename}.txt", 'wb', :output_encoding => "binary" do |file|
