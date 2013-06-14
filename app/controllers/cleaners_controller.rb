@@ -9,15 +9,9 @@ class CleanersController < ApplicationController
 	end
 
 	def process_file
-		if params[:file].original_filename.include? '.txt'
-			new_filename = params[:file].original_filename.sub(".txt", "_cleaned.txt")
-		else
-			new_filename = params[:file].original_filename.sub(".log", "_cleaned.txt")
-		end
-		
+		new_filename = sanitize_filename(params[:file].original_filename)
 		@content = params[:file].read
 		logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-
 		# File.open "#{Rails.root}/tmp/#{new_filename}.txt", 'wb', :output_encoding => "binary" do |file|
 		file = File.open("txlogs/#{new_filename}", "w+")
 		file.binmode
@@ -47,7 +41,16 @@ class CleanersController < ApplicationController
 
 	private
 
-	
+	def sanitize_filename(file)
+		browser.ie? ? stripped_file = File.basename(file) : stripped_file = file
+
+		if stripped_file.include? '.txt'
+			stripped_file.sub(".txt", "_cleaned.txt")
+		else
+			stripped_file.sub(".log", "_cleaned.txt")
+		end
+	end
+
 
 	def include_string?(line, array)
 		array.each do |string|
