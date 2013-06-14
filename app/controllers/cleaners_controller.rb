@@ -45,7 +45,8 @@ class CleanersController < ApplicationController
 	private
 
 	def sanitize_filename(file)
-		stripped_file = browser.ie? ? file : file.original_filename
+	
+		stripped_file = (browser.ie? ? file.original_filename : file.original_filename)
 
 		if stripped_file.include? '.txt'
 			stripped_file.sub(".txt", "_cleaned.txt")
