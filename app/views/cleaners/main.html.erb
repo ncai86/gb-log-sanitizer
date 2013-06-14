@@ -1,6 +1,6 @@
 
 
-<%= form_tag process_file_cleaners_path, html: {multipart: true}, remote: true, id: 'upload-form' do %>
+<%= form_tag process_file_cleaners_path, multipart: true, remote: true, id: 'upload-form' do %>
   <label for="file" class="upload-label">File to Upload</label>
   <%= file_field_tag :file, id: "upload-log" %>
   <br>
